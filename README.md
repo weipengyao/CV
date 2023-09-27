@@ -1,2 +1,2 @@
 # CV
-personal academic CV
+personal CV
