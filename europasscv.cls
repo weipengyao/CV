@@ -250,7 +250,13 @@
 }
 
 \def\ecv@currvitaekey{}
-\newcommand{\ecvcurrvitae}{\ifx\@empty\ecv@currvitaekey Curriculum vitae \else \ecv@currvitaekey \fi}
+\newcommand{\ecvcurrvitae}{
+\if
+    x\@empty\ecv@currvitaekey Curriculum vitae 
+\else 
+    \ecv@currvitaekey 
+\fi
+}
 \newcommand{\ecvcoloredtitle}{\fontfamily{phv}\fontseries{m}\selectfont \textcolor{ecvhighlightcolor}{\ecvcurrvitae}}
 
 % Europass logo
@@ -322,7 +328,7 @@
 \AtBeginDocument{%
 % Ensure that \ecv@leftcolwidth and \ecv@rightcolwidth
 % are correctly defined
-\ecvLeftColumnWidth{50mm}
+\ecvLeftColumnWidth{45mm}
 \ecvColSep{10pt}
 
 % Set layout
@@ -471,7 +477,23 @@
     }
     { %  right column
     \begin{doublespacing}
-    \begin{tabular}[t]{@{}p{\if@ecvpicture \if@ecvpictureleft \ecv@rightcolwidth \else 0.7\ecv@rightcolwidth \fi \else \ecv@rightcolwidth\fi}@{}p{\if@ecvpicture 0.3\ecv@rightcolwidth \else 0pt\fi}@{}}
+    \begin{tabular}[t]{@{}p{
+    \if@ecvpicture 
+        \if@ecvpictureleft 
+            \ecv@rightcolwidth 
+        \else 
+            \ecv@rightcolwidth 
+        \fi 
+    \else 
+        \ecv@rightcolwidth
+    \fi
+    }@{}p{
+    \if@ecvpicture 
+        \ecv@rightcolwidth 
+    \else 
+        0pt 
+    \fi
+    }@{}}
       \raggedright
       {\ecvLargenormalstyle{\ecv@name}} \newline
       \ifx\@empty\ecv@address\else
